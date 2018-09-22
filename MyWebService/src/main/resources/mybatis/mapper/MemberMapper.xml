@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sun.springboot.mapper.MemberMapper">
+
+    <select id="getMemberById" resultType="com.sun.springboot.entity.Member">
+        SELECT * FROM member WHERE id=#{id}
+    </select>
+
+    <delete id="delMemberById">
+        DELETE FROM member WHERE id=#{id}
+    </delete>
+
+    <update id="updateMemberById"  parameterType="com.sun.springboot.entity.Member">
+        UPDATE member
+        <trim prefix="set" suffixOverrides=",">
+            <if test="userName!=null">
+                username=#{userName},
+            </if>
+            <if test="passWad!=null">
+                passwad=#{passWad}
+            </if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
+</mapper>
